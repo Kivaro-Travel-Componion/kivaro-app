@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "kiravo",
-    "slug": "kiravo",
+    "slug": "kivaro-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -50,6 +50,7 @@
       "eas": {
         "projectId": "1b4ee731-a8fa-4cd5-8cef-65d447d18eb8"
       }
-    }
+    },
+    "owner": "kivaro-travel-componion"
   }
 }
