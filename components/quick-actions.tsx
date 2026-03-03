@@ -1,14 +1,16 @@
 import { fontFamily } from "@/constants/fonts";
 import { Icon } from "@/components/ui/icon";
-import { DollarSign, PlaneTakeoff, ListCheck, CircleDollarSign } from "lucide-react-native";
+import { DollarSign, PlaneTakeoff, CircleDollarSign, ScanBarcode } from "lucide-react-native";
 import { Text, View, Pressable, Animated } from "react-native";
 import { useRef } from "react";
+import { router } from "expo-router";
 
-function ActionButton({ label, icon, bg, color }: {
+function ActionButton({ label, icon, bg, color, onPress }: {
   label: string;
   icon: any;
   bg: string;
   color: string;
+  onPress?: () => void;
 }) {
   const scale = useRef(new Animated.Value(1)).current;
 
@@ -31,7 +33,7 @@ function ActionButton({ label, icon, bg, color }: {
   };
 
   return (
-    <Pressable onPressIn={onPressIn} onPressOut={onPressOut}>
+    <Pressable onPressIn={onPressIn} onPressOut={onPressOut} onPress={onPress}>
       <Animated.View style={{ transform: [{ scale }] }} className="items-center gap-2">
         <View className={`w-12 h-12 ${bg} rounded-full items-center justify-center`}>
           <Icon as={icon} className={color} size="md" />
@@ -44,10 +46,34 @@ function ActionButton({ label, icon, bg, color }: {
 
 export default function QuickActions() {
   const actions = [
-    { label: 'Add Expense', icon: DollarSign, bg: 'bg-blue-100', color: 'text-blue-500' },
-    { label: 'New Trip', icon: PlaneTakeoff, bg: 'bg-red-100', color: 'text-red-500' },
-    { label: 'Currency', icon: CircleDollarSign, bg: 'bg-purple-100', color: 'text-purple-500' },
-    { label: 'Check List', icon: ListCheck, bg: 'bg-green-100', color: 'text-green-500' },
+    {
+      label: 'Add Expense',
+      icon: DollarSign,
+      bg: 'bg-blue-100',
+      color: 'text-blue-500',
+      onPress: () => router.push("/scan-bill"), // adjust to your route
+    },
+    {
+      label: 'New Trip',
+      icon: PlaneTakeoff,
+      bg: 'bg-red-100',
+      color: 'text-red-500',
+      onPress: () => router.push("/scan-bill"), // adjust to your route
+    },
+    {
+      label: 'Currency',
+      icon: CircleDollarSign,
+      bg: 'bg-purple-100',
+      color: 'text-purple-500',
+      onPress: () => router.push("/scan-bill"), // adjust to your route
+    },
+    {
+      label: 'Scan Bill',
+      icon: ScanBarcode,
+      bg: 'bg-green-100',
+      color: 'text-green-500',
+      onPress: () => router.push("/scan-bill"), // → ScanBillScreen
+    },
   ];
 
   return (
